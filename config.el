@@ -1,65 +1,73 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-
-
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets.
+;; Basic settings
 (setq user-full-name "Janus S. Valberg-Madsen"
-      user-mail-address "janusvm@gmail.com")
+      user-mail-address "janusvm@gmail.com"
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
-;; are the three important ones:
-;;
-;; + `doom-font'
-;; + `doom-variable-pitch-font'
-;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "Cascadia Code PL" :size 16 :weight 'regular))
+      ;; Appearance
+      doom-font (font-spec :family "Iosevka SS04" :size 18 :weight 'regular)
+      doom-big-font (font-spec :family "Iosevka SS04" :size 36 :weight 'semibold)
+      doom-theme 'doom-nord
+      doom-scratch-initial-major-mode 'lisp-interaction-mode
 
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-nord)
+      display-line-numbers-type nil)
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+;; (setq-default left-margin-width 1
+;;               right-margin-width 1)
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq confirm-kill-emacs nil)
 
+;; TODO figure out a good way to organise my settings
+;; -----------------------------------------------------------------------------
 
-;; Here are some additional functions/macros that could help you configure Doom:
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
-
-;;-----------------------------------------------------------------------------
-;; FIXME unsorted configurations, clean up this file later
 (electric-pair-mode 1)                  ; Always insert matching parens etc.
 (setq tab-always-indent 'complete)      ; I don't ever want to *insert* tabs
 
-;; Write a function for doing the below action (here done specifically for just-one-space)
+;; Enable certain commands in evil-mc (multi-cursor) contexts
 (after! evil-mc
-  (add-to-list 'evil-mc-known-commands
-               '(just-one-space . ((:default . evil-mc-execute-default-call)))))
+  (dolist (cmd '(just-one-space))       ; TODO add more commands to this list
+    (add-to-list 'evil-mc-known-commands
+                 `(,cmd . ((:default . evil-mc-execute-default-call))))))
+
+(after! geiser
+  (setq geiser-active-implementations '(guile)
+        geiser-default-implementation 'guile))
+
+(after! org-tree-slide
+  (setq +org-present-text-scale 4))
+
+;; Open terminal in the directory of currently open buffer
+(map! "<C-s-return>" #'terminal-here-launch)
+(setq terminal-here-command-command (list "alacritty"))
+
+(map! "C-s" #'swiper-isearch)           ; I prefer Swiper's I-search
+(setq avy-all-windows 'all-frames)      ; Jump anywhere that's visible on screen
+
+(map! :leader
+      :desc "Version control" "pv" #'projectile-vc)
+
+(map! :leader
+      :prefix ("r" . "rotate")
+      :desc "Transpose frames" "t" #'transpose-frame
+      :desc "Flop frames horizontally" "f" #'flop-frame
+      :desc "Flip frames vertically" "v" #'flip-frame
+      :desc "Rotate frames 180 degrees" "r" #'rotate-frame
+      :desc "Rotate frames clockwise" "c" #'rotate-frame-clockwise
+      :desc "Rotate frames anticlockwise" "a" #'rotate-frame-anticlockwise)
+
+(map! :leader
+      :desc "Modeline" "tm" #'hide-mode-line-mode
+      :desc "Find file in other window" "fo" #'find-file-other-window)
+
+;; ------------------------------------------------------------------------------
+(setq jsvm/active-themes '(doom-nord doom-nord-light))
+(defun jsvm/cycle-theme ()
+  "Cycle list of active themes, loading the next in line"
+  (interactive)
+  (let ((new-theme (car (last jsvm/active-themes)))
+        (old-themes (butlast jsvm/active-themes)))
+    (setq doom-theme new-theme)
+    (setq jsvm/active-themes (cons new-theme old-themes))
+    (doom/reload-theme)))
+(map! :leader
+      :desc "Cycle theme" "tt" #'jsvm/cycle-theme)

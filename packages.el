@@ -51,3 +51,4 @@
 
 (package! transpose-frame)
 (package! evil-tutor)
+(package! terminal-here)
