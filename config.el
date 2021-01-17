@@ -12,9 +12,6 @@
 
       display-line-numbers-type nil)
 
-;; (setq-default left-margin-width 1
-;;               right-margin-width 1)
-
 (setq confirm-kill-emacs nil)
 
 ;; TODO figure out a good way to organise my settings
@@ -40,7 +37,6 @@
 (map! "<C-s-return>" #'terminal-here-launch)
 (setq terminal-here-command-command (list "alacritty"))
 
-(map! "C-s" #'swiper-isearch)           ; I prefer Swiper's I-search
 (setq avy-all-windows 'all-frames)      ; Jump anywhere that's visible on screen
 
 (map! :leader
