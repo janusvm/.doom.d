@@ -55,6 +55,10 @@
       :desc "Modeline" "tm" #'hide-mode-line-mode
       :desc "Find file in other window" "fo" #'find-file-other-window)
 
+;; Polymode
+(use-package! poly-markdown
+  :mode ("\\.md$" . poly-markdown-mode))
+
 ;; ------------------------------------------------------------------------------
 (setq jsvm/active-themes '(doom-nord doom-nord-light))
 (defun jsvm/cycle-theme ()
@@ -67,3 +71,5 @@
     (doom/reload-theme)))
 (map! :leader
       :desc "Cycle theme" "tt" #'jsvm/cycle-theme)
+
+(map! :leader :desc "Gitmoji" "ig" #'gitmoji-insert-emoji)

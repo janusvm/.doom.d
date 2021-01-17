@@ -51,3 +51,14 @@
 
 (package! transpose-frame)
 (package! terminal-here)
+
+;; Polymode packages
+(when (package! polymode)
+  (package! poly-markdown)
+  (package! poly-R))
+
+;; My own package(s)
+(package! gitmoji
+  :recipe (:host github
+           :repo "janusvm/emacs-gitmoji"
+           :files ("*.el" "data")))
