@@ -1,8 +1,7 @@
 ;;; functions/cycle-theme.el -*- lexical-binding: t; -*-
 
 (defvar jsvm/active-themes '(doom-nord
-                             doom-nord-light
-                             doom-material)
+                             doom-plain)
   "Active themes to cycle through with jsvm/cycle-theme")
 
 ;;;###autoload
