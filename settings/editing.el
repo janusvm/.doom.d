@@ -13,15 +13,6 @@
     (add-to-list 'evil-mc-known-commands
                  `(,cmd . ((:default . evil-mc-execute-default-call))))))
 
-;; (use-package! company
-;;   :bind (:map company-active-map
-;;          ("<tab>" . company-complete-selection)
-;;          :map lsp-mode-map
-;;          ("<tab>" . company-indent-or-complete-common))
-;;   :custom
-;;   (company-idle-delay 0.0)
-;;   (company-minimum-prefix-length 1))
-
 (use-package! fill-line
   :config
   (map! :leader :prefix "i"
