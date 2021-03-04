@@ -54,6 +54,8 @@
 (package! transpose-frame)
 (package! terminal-here)
 
+(package! dotnet)
+
 ;; Polymode packages
 (when (package! polymode)
   (package! poly-markdown)
