@@ -19,4 +19,8 @@
   (map! "<C-s-return>" #'terminal-here-launch)
   (setq terminal-here-linux-terminal-command 'alacritty))
 
+;; Make better use of avy
+(after! avy
+  (map! :nvom "s" #'avy-goto-char-timer))
+
 (provide 'window-mgmt)
