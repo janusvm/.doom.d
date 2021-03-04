@@ -13,10 +13,16 @@
 
 (map! :leader :desc "Find file in other window" "fo" #'find-file-other-window)
 
-;; Easy opening of terminal windows on my Linux machines
+;; Easy opening of terminal windows
 (use-package! terminal-here
   :config
-  (map! "<C-s-return>" #'terminal-here-launch)
-  (setq terminal-here-linux-terminal-command 'alacritty))
+  (map! (:when IS-LINUX "<C-s-return>" #'terminal-here-launch)
+        (:when IS-WINDOWS "<C-M-return>" #'terminal-here-launch))
+  (setq terminal-here-linux-terminal-command 'alacritty
+        terminal-here-windows-terminal-command (lambda (dir) (list "cmd.exe" "/C" "start" "wt.exe" "-d" dir))))
+
+;; Make better use of avy
+(after! avy
+  (map! :nvom "s" #'avy-goto-char-timer))
 
 (provide 'window-mgmt)

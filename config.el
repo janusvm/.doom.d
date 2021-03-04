@@ -13,3 +13,4 @@
 (use-package! editing)
 (use-package! lisps)
 (use-package! writing)
+(use-package! ide)

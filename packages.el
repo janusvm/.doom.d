@@ -49,8 +49,12 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+(disable-packages! evil-snipe)
+
 (package! transpose-frame)
 (package! terminal-here)
+
+(package! dotnet)
 
 ;; Polymode packages
 (when (package! polymode)
