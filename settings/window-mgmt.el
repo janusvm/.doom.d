@@ -23,6 +23,6 @@
 
 ;; Make better use of avy
 (after! avy
-  (map! :nvom "s" #'avy-goto-char-timer))
+  (map! :nvm "s" #'avy-goto-char-timer))
 
 (provide 'window-mgmt)

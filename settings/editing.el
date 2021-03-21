@@ -9,7 +9,10 @@
 
 ;; Enable certain commands in evil-mc (multi-cursor) contexts
 (after! evil-mc
-  (dolist (cmd '(just-one-space))       ; TODO add more commands to this list
+  (dolist (cmd '(just-one-space         ; TODO add more commands to this list
+                 evil-surround-edit
+                 evil-surround-delete
+                 evil-surround-change))
     (add-to-list 'evil-mc-known-commands
                  `(,cmd . ((:default . evil-mc-execute-default-call))))))
 
