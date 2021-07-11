@@ -5,47 +5,24 @@
       doom-themes-treemacs-enable-variable-pitch nil
       display-line-numbers-type nil)
 
-;; Ligatures support for JetBrains Mono
-;; * https://github.com/microsoft/cascadia-code/issues/153
-;; * https://gitlab.com/noaccOS/dotfiles/-/blob/master/.config/doom/config.el#L74
-(use-package! composite
-  :defer t
-  :init (defvar composition-ligature-table (make-char-table nil))
-  :hook ((prog-mode conf-mode markdown-mode help-mode nxml-mode)
-         . (lambda () (setq-local composition-function-table composition-ligature-table)))
+;; Ligatures
+(defconst jetbrains-mono-ligatures
+  '("-->" "//" "/**" "/*" "*/" "<!--" ":=" "->>" "<<-" "->" "<-" "<=>" "=="
+    "!=" "<=" ">=" "=:=" "!==" "&&" "||" "..." ".." "|||" "///" "&&&" "==="
+    "++" "--" "=>" "|>" "<|" "||>" "<||" "|||>" "<|||" ">>" "<<" "::=" "|]"
+    "[|" "{|" "|}" "[<" ">]" ":?>" ":?" "/=" "[||]" "!!" "?:" "?." "::" "+++"
+    "??" "###" "##" ":::" "####" ".?" "?=" "=!=" "<|>" "<:" ":<" ":>" ">:"
+    "<>" "***" ";;" "/==" ".=" ".-" "__" "=/=" "<-<" "<<<" ">>>" "<=<" "<<="
+    "<==" "<==>" "==>" "=>>" ">=>" ">>=" ">>-" ">-" "<~>" "-<" "-<<" "=<<"
+    "---" "<-|" "<=|" "/\\" "\\/" "|=>" "|~>" "<~~" "<~" "~~" "~~>" "~>" "<$>"
+    "<$" "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</>" "</" "/>" "<->" "..<" "~="
+    "~-" "-~" "~@" "^=" "-|" "_|_" "|-" "||-" "|=" "||=" "#{" "#[" "]#" "#("
+    "#?" "#_" "#_(" "#:" "#!" "#=" "&="))
+
+(use-package! ligature
   :config
-  (when (version<= "27.0" emacs-version)
-    (let ((alist '((?! . "\\(?:!\\(?:==\\|[!=]\\)\\)")
-                   (?# . "\\(?:#\\(?:###?\\|_(\\|[!#(:=?[_{]\\)\\)")
-                   (?$ . "\\(?:\\$>\\)")
-                   (?& . "\\(?:&&&?\\)")
-                   (?* . "\\(?:\\*\\(?:\\*\\*\\|[/>]\\)\\)")
-                   (?+ . "\\(?:\\+\\(?:\\+\\+\\|[+>]\\)\\)")
-                   (?- . "\\(?:-\\(?:-[>-]\\|<<\\|>>\\|[<>|~-]\\)\\)")
-                   (?. . "\\(?:\\.\\(?:\\.[.<]\\|[.=?-]\\)\\)")
-
-                   ;; This one causes trouble somehow (https://www.reddit.com/r/emacs/comments/icem4s/emacs_271_freezes_when_using_font_ligatures)
-                   ;; (?/ . "\\(?:/\\(?:\\*\\*\\|//\\|==\\|[*/=>]\\)\\)")
-
-                   (?0 . ".\\(?:\\(x[a-fA-F0-9]\\).?\\)")
-                   (?: . "\\(?::\\(?:::\\|\\?>\\|[:<-?]\\)\\)")
-                   (?\; . "\\(?:;;\\)")
-                   (?< . "\\(?:<\\(?:!--\\|\\$>\\|\\*>\\|\\+>\\|-[<>|]\\|/>\\|<[<=-]\\|=\\(?:=>\\|[<=>|]\\)\\||\\(?:||::=\\|[>|]\\)\\|~[>~]\\|[$*+/:<=>|~-]\\)\\)")
-                   (?= . "\\(?:=\\(?:!=\\|/=\\|:=\\|=[=>]\\|>>\\|[=>]\\)\\)")
-                   (?> . "\\(?:>\\(?:=>\\|>[=>-]\\|[]:=-]\\)\\)")
-                   (?? . "\\(?:\\?[.:=?]\\)")
-                   (?\[ . "\\(?:\\[\\(?:||]\\|[<|]\\)\\)")
-                   (?\ . "\\(?:\\\\/?\\)")
-                   (?\] . "\\(?:]#\\)")
-                   (?^ . "\\(?:\\^=\\)")
-                   (?_ . "\\(?:_\\(?:|?_\\)\\)")
-                   (?{ . "\\(?:{|\\)")
-                   (?| . "\\(?:|\\(?:->\\|=>\\||\\(?:|>\\|[=>-]\\)\\|[]=>|}-]\\)\\)")
-                   (?~ . "\\(?:~\\(?:~>\\|[=>@~-]\\)\\)"))))
-      (dolist (char-regexp alist)
-        (set-char-table-range composition-function-table (car char-regexp)
-                              `([,(cdr char-regexp) 0 font-shape-gstring]))))
-    (set-char-table-parent composition-ligature-table composition-function-table)))
+  (ligature-set-ligatures 'prog-mode jetbrains-mono-ligatures)
+  (global-ligature-mode t))
 
 ;; MODELINE SETTINGS -----------------------------------------------------------
 (after! doom-modeline

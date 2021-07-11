@@ -62,6 +62,12 @@
   (package! poly-markdown)
   (package! poly-R))
 
+;; Github packages
+(package! ligature
+  :recipe (:host github
+           :repo "mickeynp/ligature.el"
+           :files ("*.el")))
+
 ;; My own package(s)
 (package! gitmoji
   :recipe (:host github
