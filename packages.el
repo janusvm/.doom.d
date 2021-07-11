@@ -51,10 +51,11 @@
 
 (disable-packages! evil-snipe)
 
-(package! transpose-frame)
-(package! terminal-here)
-
 (package! dotnet)
+(package! modus-themes)
+(package! sql-indent)
+(package! terminal-here)
+(package! transpose-frame)
 
 ;; Polymode packages
 (when (package! polymode)
