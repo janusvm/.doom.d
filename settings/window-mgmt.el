@@ -13,6 +13,12 @@
 
 (map! :leader :desc "Find file in other window" "fo" #'find-file-other-window)
 
+(map! :map evil-window-map
+      "<left>" #'evil-window-left
+      "<down>" #'evil-window-down
+      "<up>" #'evil-window-up
+      "<right>" #'evil-window-right)
+
 ;; Easy opening of terminal windows
 (use-package! terminal-here
   :config
@@ -23,6 +29,7 @@
 
 ;; Make better use of avy
 (after! avy
-  (map! :nvm "s" #'avy-goto-char-timer))
+  (map! :nvm "s" #'avy-goto-char-timer)
+  (setq avy-keys '(?a ?r ?s ?t ?n ?e ?i ?o)))
 
 (provide 'window-mgmt)
