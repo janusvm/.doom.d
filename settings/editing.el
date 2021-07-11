@@ -5,6 +5,8 @@
       avy-all-windows 'all-frames
       tab-always-indent 'complete)
 
+;; My preference for parens matching
+(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
 (electric-pair-mode 1)
 
 ;; Enable certain commands in evil-mc (multi-cursor) contexts
