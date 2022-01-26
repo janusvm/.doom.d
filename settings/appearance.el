@@ -1,7 +1,7 @@
 ;;; settings/appearance.el -*- lexical-binding: t; -*-
 
 ;; FONT SETTINGS ---------------------------------------------------------------
-(setq doom-font (font-spec :family "JetBrains Mono" :size 17)
+(setq doom-font (font-spec :family "Iosevka Nova" :size 32)
       doom-themes-treemacs-enable-variable-pitch nil
       display-line-numbers-type nil)
 
