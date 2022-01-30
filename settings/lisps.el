@@ -16,11 +16,6 @@
      text-objects
      prettify)))
 
-;; Scheme settings
-(after! geiser
-  (setq geiser-active-implementations '(guile)
-        geiser-default-implementation 'guile))
-
 ;; Clojure settings
 (after! cider
   (setq cider-jack-in-default 'lein))
