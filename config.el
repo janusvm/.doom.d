@@ -8,6 +8,7 @@
 (add-load-path! "functions" "settings")
 
 ;; Load settings from files in subdirectory
+(use-package! bug-fixes)
 (use-package! appearance)
 (use-package! window-mgmt)
 (use-package! editing)
