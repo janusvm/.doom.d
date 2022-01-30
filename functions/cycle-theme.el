@@ -9,8 +9,8 @@
   (interactive)
   (let ((new-theme (car (last jsvm/active-themes)))
         (old-themes (butlast jsvm/active-themes)))
-    (setq doom-theme new-theme)
     (setq jsvm/active-themes (cons new-theme old-themes))
-    (doom/reload-theme)))
+    (load-theme new-theme)
+    (message "Loaded theme: %s" new-theme)))
 
 (provide 'cycle-theme)

@@ -36,7 +36,7 @@
 (use-package! modus-themes
   :init
   (setq modus-themes-bold-constructs t
-        modus-themes-slanted-constructs t
+        modus-themes-italic-constructs t
         modus-themes-mode-line '(borderless)
         modus-themes-paren-match 'intense-bold)
   (modus-themes-load-themes))
