@@ -15,3 +15,6 @@
 (use-package! lisps)
 (use-package! writing)
 (use-package! ide)
+
+;; Load machine local settings, if available
+(load! "local-config.el" doom-private-dir t)
