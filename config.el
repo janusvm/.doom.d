@@ -18,3 +18,6 @@
 
 ;; Load machine local settings, if available
 (load! "local-config.el" doom-private-dir t)
+
+;; Start in $HOME directory
+(cd (getenv "HOME"))
