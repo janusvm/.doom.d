@@ -9,6 +9,18 @@
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
 (electric-pair-mode 1)
 
+;; Completion settings
+(after! company
+  ;; Adjust completion behavior and keymapping
+  (map! :i "<tab>" #'company-indent-or-complete-common)
+  (map! :map company-active-map "<tab>" #'company-complete-common)
+  (setq company-idle-delay 0.0
+        company-minimum-prefix-length 1)
+
+  ;; Get rid of the ispell backend
+  (setq +company-backend-alist (assq-delete-all 'text-mode +company-backend-alist))
+  (add-to-list '+company-backend-alist '(text-mode (:separate company-yasnippet))))
+
 ;; Enable certain commands in evil-mc (multi-cursor) contexts
 (after! evil-mc
   (dolist (cmd '(just-one-space         ; TODO add more commands to this list

@@ -12,13 +12,6 @@
         lsp-ui-imenu--custom-mode-line-format ""
         +lsp-company-backends '(company-capf company-yasnippet)))
 
-;; Completion settings
-(after! company
-  (map! :i "<tab>" #'company-indent-or-complete-common)
-  (map! :map company-active-map "<tab>" #'company-complete-common)
-  (setq company-idle-delay 0.0
-        company-minimum-prefix-length 1))
-
 ;; .NET development
 (use-package! dotnet
   :hook ((csharp-mode csproj-mode) . dotnet-mode)

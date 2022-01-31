@@ -38,7 +38,10 @@
   (setq modus-themes-bold-constructs t
         modus-themes-italic-constructs t
         modus-themes-mode-line '(borderless)
-        modus-themes-paren-match 'intense-bold)
+        modus-themes-paren-match '(bold intense)
+        modus-themes-completions 'opinionated
+        modus-themes-region '(accented)
+        modus-themes-subtle-line-numbers t)
   (modus-themes-load-themes))
 
 ;; Change theme on the fly
