@@ -23,11 +23,13 @@
 (use-package! terminal-here
   :config
   (map! (:when IS-LINUX "<C-s-return>" #'terminal-here-launch)
-        (:when IS-WINDOWS "<C-M-return>" #'terminal-here-launch))
+        (:when IS-WINDOWS "<C-M-return>" #'terminal-here-launch)
+        :leader
+        :desc "Launch terminal in project root" "p RET" #'terminal-here-project-launch)
   (setq terminal-here-linux-terminal-command 'alacritty
         terminal-here-windows-terminal-command (lambda (dir) (list "cmd.exe" "/C" "start" "wt.exe" "-d" dir))))
 
-;; Make better use of avy
+;; Override the default Avy keys for better compatibility with Colemak
 (after! avy
   (map! :nvm "s" #'avy-goto-char-timer)
   (setq avy-keys '(?a ?r ?s ?t ?n ?e ?i ?o)))
