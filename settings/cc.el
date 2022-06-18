@@ -1,18 +1,9 @@
-;;; settings/ide.el -*- lexical-binding: t; -*-
+;;; settings/cc.el -*- lexical-binding: t; -*-
 
-;; LSP settings
-(after! lsp-mode
-  (map! :leader
-        :desc "Diagnostics" "c-" #'lsp-ui-flycheck-list
-        :desc "Imenu" "c," #'lsp-ui-imenu)
-  (setq lsp-headerline-breadcrumb-enable-diagnostics nil
-        lsp-headerline-breadcrumb-enable t
-        lsp-lens-enable t
-        lsp-ui-sideline-show-code-actions nil
-        lsp-ui-imenu--custom-mode-line-format ""
-        +lsp-company-backends '(company-capf company-yasnippet)))
+;; Common, basic settings
+(setq c-default-style "java")
 
-;; .NET development
+;; C# AND .NET SETTINGS ---------------------------------------------------------
 (use-package! dotnet
   :hook ((csharp-mode csproj-mode) . dotnet-mode)
   :config
@@ -39,4 +30,4 @@
         :desc "Test" "t" #'dotnet-test)
   (set-popup-rule! "^\\*dotnet" :select t :quit t :side 'bottom :size 0.3))
 
-(provide 'ide)
+(provide 'cc)
