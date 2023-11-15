@@ -1,7 +1,8 @@
 ;;; settings/cc.el -*- lexical-binding: t; -*-
 
 ;; Common, basic settings
-(setq c-default-style "java")
+(setq c-default-style "k&r"
+      c-basic-offset 4)
 
 ;; C# AND .NET SETTINGS ---------------------------------------------------------
 (use-package! dotnet

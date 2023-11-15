@@ -16,8 +16,4 @@
      text-objects
      prettify)))
 
-;; Clojure settings
-(after! cider
-  (setq cider-jack-in-default 'lein))
-
 (provide 'lisps)

@@ -41,8 +41,10 @@
       avy-all-windows 'all-frames
       tab-always-indent 'complete)
 
-;; My preference for parens matching
-(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
+;; My preference for parens matching and flycheck
+(remove-hook!
+  'doom-first-buffer-hook #'smartparens-global-mode
+  'doom-first-buffer-hook #'global-flycheck-mode)
 (electric-pair-mode 1)
 
 (map! :leader

@@ -39,7 +39,10 @@
         modus-themes-italic-constructs t
         modus-themes-mode-line '(borderless)
         modus-themes-paren-match '(bold intense)
-        modus-themes-completions 'opinionated
+        ;; modus-themes-completions 'opinionated
+        modus-themes-completions '((matches . (extrabold italic intense))
+                                   (selection . (semibold accented intense))
+                                   (popup . (accented background)))
         modus-themes-region '(accented)
         modus-themes-subtle-line-numbers t)
   (modus-themes-load-themes))
