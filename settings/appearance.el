@@ -33,26 +33,29 @@
   (map! :leader :desc "Modeline" "tm" #'hide-mode-line-mode))
 
 ;; THEME SETTINGS --------------------------------------------------------------
-(use-package! modus-themes
-  :init
-  (setq modus-themes-bold-constructs t
-        modus-themes-italic-constructs t
-        modus-themes-mode-line '(borderless)
-        modus-themes-paren-match '(bold intense)
-        ;; modus-themes-completions 'opinionated
-        modus-themes-completions '((matches . (extrabold italic intense))
-                                   (selection . (semibold accented intense))
-                                   (popup . (accented background)))
-        modus-themes-region '(accented)
-        modus-themes-subtle-line-numbers t)
-  (modus-themes-load-themes))
-
-;; Change theme on the fly
-(use-package! cycle-theme
+(use-package! catppuccin-theme
   :config
-  (setq jsvm/active-themes '(modus-vivendi modus-operandi)
-        doom-theme (car jsvm/active-themes))
-  (map! :leader
-        :desc "Cycle theme" "tt" #'jsvm/cycle-theme))
+  (setq doom-theme 'catppuccin
+        catppuccin-italic-comments t)
+  (catppuccin-reload))
+
+;; (use-package! modus-themes
+;;   :ensure t
+;;   :config
+;;   (setq modus-themes-bold-constructs t
+;;         modus-themes-italic-constructs t
+;;         modus-themes-common-palette-overrides '((border-mode-line-active unspecified)
+;;                                                 (border-mode-line-inactive unspecified)
+;;                                                 (bg-paren-match bg-magenta-intense))
+;;         modus-themes-paren-match '(bold intense)
+;;         modus-themes-completions '((matches . (extrabold italic intense))
+;;                                    (selection . (semibold accented intense))
+;;                                    (popup . (accented background)))
+;;         modus-themes-region '(accented)
+;;         modus-themes-subtle-line-numbers t
+;;         modus-themes-to-toggle '(modus-vivendi modus-operandi))
+;;   (modus-themes-load-theme 'modus-vivendi)
+;;   (map! :leader
+;;         :desc "Cycle theme" "tt" #'modus-themes-toggle))
 
 (provide 'appearance)

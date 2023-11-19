@@ -16,7 +16,8 @@
 (after! lsp-mode
   (map! :leader
         :desc "Diagnostics" "c-" #'lsp-ui-flycheck-list
-        :desc "Imenu" "c," #'lsp-ui-imenu)
+        :desc "Imenu" "c," #'lsp-ui-imenu
+        :desc "Glance symbol doc" "ch" #'lsp-ui-doc-glance)
   (setq lsp-headerline-breadcrumb-enable-diagnostics nil
         lsp-headerline-breadcrumb-enable t
         lsp-lens-enable t

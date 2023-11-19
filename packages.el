@@ -51,6 +51,7 @@
 
 (disable-packages! evil-snipe)
 
+(package! catppuccin-theme)
 (package! dotnet)
 (package! modus-themes)
 (package! sql-indent)
